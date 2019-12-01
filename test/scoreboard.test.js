@@ -4,7 +4,7 @@ import { expect } from 'chai';
 import { configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
-import { initialState, setScore } from '../src/scoreboard';
+import { initialState, setPoints } from '../src/gamePoints';
 import { getGameScore } from '../src/getGameScore';
 import Scoreboard from '../src/components/Scoreboard';
 
@@ -50,7 +50,7 @@ describe('setScore', () => {
   it('Player 1 scores a point', () => {
     let state = initialState;
 
-    state = setScore(1, state);
+    state = setPoints(1, state);
 
     expect(state.gamePoints.player1).to.equal(1);
     expect(state.gamePoints.player2).to.equal(0);
@@ -59,10 +59,10 @@ describe('setScore', () => {
   it('Player 1 wins game', () => {
     let state = initialState;
 
-    state = setScore(1, state); // 15 - 0
-    state = setScore(1, state); // 30 - 0
-    state = setScore(1, state); // 40 - 0
-    state = setScore(1, state); // Game
+    state = setPoints(1, state); // 15 - 0
+    state = setPoints(1, state); // 30 - 0
+    state = setPoints(1, state); // 40 - 0
+    state = setPoints(1, state); // Game
 
     expect(state.gamePoints.player1).to.equal(4);
     expect(state.gamePoints.player2).to.equal(0);
@@ -71,12 +71,12 @@ describe('setScore', () => {
   it('Players deuce', () => {
     let state = initialState;
 
-    state = setScore(1, state); // 15 - 0
-    state = setScore(1, state); // 30 - 0
-    state = setScore(1, state); // 40 - 0
-    state = setScore(2, state); // 40 - 15
-    state = setScore(2, state); // 40 - 30
-    state = setScore(2, state); // 40 - 40 (Deuce)
+    state = setPoints(1, state); // 15 - 0
+    state = setPoints(1, state); // 30 - 0
+    state = setPoints(1, state); // 40 - 0
+    state = setPoints(2, state); // 40 - 15
+    state = setPoints(2, state); // 40 - 30
+    state = setPoints(2, state); // 40 - 40 (Deuce)
 
     expect(state.gamePoints.player1).to.equal(3);
     expect(state.gamePoints.player2).to.equal(3);
@@ -85,13 +85,13 @@ describe('setScore', () => {
   it('Player 1 advantage', () => {
     let state = initialState;
 
-    state = setScore(1, state); // 15 - 0
-    state = setScore(1, state); // 30 - 0
-    state = setScore(1, state); // 40 - 0
-    state = setScore(2, state); // 40 - 15
-    state = setScore(2, state); // 40 - 30
-    state = setScore(2, state); // 40 - 40 (Deuce)
-    state = setScore(1, state); // AD - 40
+    state = setPoints(1, state); // 15 - 0
+    state = setPoints(1, state); // 30 - 0
+    state = setPoints(1, state); // 40 - 0
+    state = setPoints(2, staste); // 40 - 15
+    state = setPoints(2, state); // 40 - 30
+    state = setPoints(2, state); // 40 - 40 (Deuce)
+    state = setPoints(1, state); // AD - 40
 
     expect(state.gamePoints.player1).to.equal(4);
     expect(state.gamePoints.player2).to.equal(3);
@@ -100,14 +100,14 @@ describe('setScore', () => {
   it('Players double deuce', () => {
     let state = initialState;
 
-    state = setScore(1, state); // 15 - 0
-    state = setScore(1, state); // 30 - 0
-    state = setScore(1, state); // 40 - 0
-    state = setScore(2, state); // 40 - 15
-    state = setScore(2, state); // 40 - 30
-    state = setScore(2, state); // 40 - 40 (Deuce)
-    state = setScore(1, state); // AD - 40
-    state = setScore(2, state); // 40 - 40 (Deuce)
+    state = setPoints(1, state); // 15 - 0
+    state = setPoints(1, state); // 30 - 0
+    state = setPoints(1, state); // 40 - 0
+    state = setPoints(2, state); // 40 - 15
+    state = setPoints(2, state); // 40 - 30
+    state = setPoints(2, state); // 40 - 40 (Deuce)
+    state = setPoints(1, state); // AD - 40
+    state = setPoints(2, state); // 40 - 40 (Deuce)
 
     expect(state.gamePoints.player1).to.equal(3, 'Implement deuce logic');
     expect(state.gamePoints.player2).to.equal(3, 'Implement deuce logic');
