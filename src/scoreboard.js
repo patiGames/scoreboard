@@ -15,19 +15,37 @@ export function setScore(playerNumber, previousState) {
 
 export function getGameScore(gamePoints) {
 
-  let scoreCall = getScoreByPoints(gamePoints.player1);
-  scoreCall = scoreCall + "-";
+  const winningPlayer = getWinningPlayer(gamePoints);
+  let scoreCall;
 
-  if (gamePoints.player1 === gamePoints.player2) {
-    scoreCall = scoreCall + "all";
+  if (isEven(gamePoints.player1, gamePoints.player2)) {
+    scoreCall = `${getScoreByPoints(gamePoints.player1)}-all`;
+  } else if (hasAPlayerWon(gamePoints.player1, gamePoints.player2)) {
+    scoreCall = `Game, ${winningPlayer}` ;
   } else {
-    scoreCall = scoreCall + getScoreByPoints(gamePoints.player2);
+    scoreCall = `${getScoreByPoints(gamePoints.player1)}-${getScoreByPoints(gamePoints.player2)}`;
   }
 
   return {
     scoreCall,
-    winningPlayer: null,
+    winningPlayer,
   }
+}
+
+function isEven(pointsPlayer1, pointsPlayer2) {
+  return pointsPlayer1 === pointsPlayer2;
+}
+
+function hasAPlayerWon(pointsPlayer1, pointsPlayer2) {
+  return ((pointsPlayer1 > 3 || pointsPlayer2> 3) && Math.abs(pointsPlayer1 - pointsPlayer2) > 2);
+}
+
+function getWinningPlayer(gamePoints) {
+  if (isEven(gamePoints.player1, gamePoints.player2)) {
+    return "";
+  }
+
+  return Object.keys(gamePoints).reduce((player1, player2) => gamePoints[player1] > gamePoints[player2] ? player1 : player2);
 }
 
 function getScoreByPoints(points) {
@@ -44,5 +62,5 @@ function getScoreByPoints(points) {
     return "40";
 
   if (points > 3)
-    return "after 40";
+    return "A";
 }
