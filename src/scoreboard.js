@@ -15,7 +15,14 @@ export function setScore(playerNumber, previousState) {
 
 export function getGameScore(gamePoints) {
 
-  const scoreCall = "love-all";
+  let scoreCall = getScoreByPoints(gamePoints.player1);
+  scoreCall = scoreCall + "-";
+
+  if (gamePoints.player1 === gamePoints.player2) {
+    scoreCall = scoreCall + "all";
+  } else {
+    scoreCall = scoreCall + getScoreByPoints(gamePoints.player2);
+  }
 
   return {
     scoreCall,
@@ -24,6 +31,18 @@ export function getGameScore(gamePoints) {
 }
 
 function getScoreByPoints(points) {
-  if(points === 0)
+  if (points === 0)
     return "love";
+
+  if (points === 1)
+    return "15";
+
+  if (points === 2)
+    return "30";
+
+  if (points === 3)
+    return "40";
+
+  if (points > 3)
+    return "after 40";
 }
