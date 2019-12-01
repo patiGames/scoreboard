@@ -5,7 +5,7 @@ import { configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
 import { initialState, setPoints } from '../src/gamePoints';
-import { getGameScore } from '../src/gameScoreFormatter';
+import { getGameScore } from '../src/gameScoreParser';
 import Scoreboard from '../src/components/Scoreboard';
 
 configure({ adapter: new Adapter() });

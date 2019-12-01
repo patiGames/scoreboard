@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { initialState, setPoints } from '../gamePoints';
-import { getGameScore } from '../gameScoreFormatter';
+import { getGameScore } from '../gameScoreParser';
 
 class Scoreboard extends Component {
 
