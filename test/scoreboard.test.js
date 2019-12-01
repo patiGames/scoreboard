@@ -5,7 +5,7 @@ import { configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
 import { initialState, setPoints } from '../src/gamePoints';
-import { getGameScore } from '../src/getGameScore';
+import { getGameScore } from '../src/gameScoreFormatter';
 import Scoreboard from '../src/components/Scoreboard';
 
 configure({ adapter: new Adapter() });
@@ -88,7 +88,7 @@ describe('setScore', () => {
     state = setPoints(1, state); // 15 - 0
     state = setPoints(1, state); // 30 - 0
     state = setPoints(1, state); // 40 - 0
-    state = setPoints(2, staste); // 40 - 15
+    state = setPoints(2, state); // 40 - 15
     state = setPoints(2, state); // 40 - 30
     state = setPoints(2, state); // 40 - 40 (Deuce)
     state = setPoints(1, state); // AD - 40
