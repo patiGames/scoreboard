@@ -4,7 +4,8 @@ import { expect } from 'chai';
 import { configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
-import { initialState, getGameScore, setScore } from '../src/scoreboard';
+import { initialState, setScore } from '../src/scoreboard';
+import { getGameScore } from '../src/getGameScore';
 import Scoreboard from '../src/components/Scoreboard';
 
 configure({ adapter: new Adapter() });
