@@ -15,10 +15,15 @@ export function setScore(playerNumber, previousState) {
 
 export function getGameScore(gamePoints) {
 
-  // ... do something with gamePoints ...
+  const scoreCall = "love-all";
 
   return {
-    scoreCall: null,
+    scoreCall,
     winningPlayer: null,
   }
+}
+
+function getScoreByPoints(points) {
+  if(points === 0)
+    return "love";
 }
